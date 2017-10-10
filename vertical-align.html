@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*通用*/
+        main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /*相当有限的，因为它只适用于在视口中居中的场景*/
+        main1 {
+            width: 18em;
+            padding: 1em 1.5em;
+            margin: 50vh auto 0;
+            transform: translateY(-50%);
+        }
+
+        parent3 {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+        }
+        main3 {
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<p>
+    1. 基于绝对定位的解决方案 -----> main 样式
+    2. 基于视口单位的解决方案 -----> main1 样式
+    3. 基于 Flexbox 的解决方案 -----> parent3 + main3(当我们使用 Flexbox 时， margin: auto 不仅在水平方向上将元
+    素居中，垂直方向上也是如此。)
+</p>
+</body>
+</html>
