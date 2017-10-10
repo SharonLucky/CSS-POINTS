@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSS3技巧：利用css3径向渐变做一张优惠券</title>
+    <title>CSS3右向箭头 --- 三角形箭头</title>
     <style>
        .mine-invite {
             font-family: PingFangSC-Regular;
@@ -24,11 +24,23 @@
             right: 18px;
        }
 
+       /*三角形箭头*/
+       #triangle-right {
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            border-left: 100px solid red;
+            border-bottom: 50px solid transparent;
+        }
     </style>
 </head>
 <body>
+    <!--右向箭头-->
     <div class="mine-invite">
         <i class="arrow"></i>
     </div>
+    <hr>
+    <!--三角形箭头-->
+    <div id="triangle-right"></div>
 </body>
 </html>

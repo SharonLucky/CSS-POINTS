@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动web页面支持弹性滚动</title>
+    <style>
+        body{
+            -webkit-overflow-scrolling: touch; /* ios5+ */
+        }
+        ele{
+            overflow:auto;
+        }
+    </style>
+</head>
+<body>
+<p>在IOS机型中，非body元素的滚动条会非常不流畅，又不想用JS模拟滚动条。</p>
+<p>-webkit-overflow-scrolling属性具有继承效果，所以在 body 上设置即可，这样局部滚动条就非常的流畅了。</p>
+</body>
+</html>
