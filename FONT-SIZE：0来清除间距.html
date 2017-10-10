@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FONT-SIZE：0来清除间距</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .items {
+            font-size: 0;
+        }
+        .item {
+            display: inline-block;
+            width: 25%;
+            height: 50px;
+            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 50px;
+            background-color: #eee;
+            font-size: 16px; 
+            /*！！！！给子元素设置字号*/
+        }
+    </style>
+</head>
+<body>
+    <p>
+        inline-block的元素之间会受空白区域的影响，即元素之间差不多会有一个字符的间隙。
+        如果在同一行内有4个25%相同宽度的元素，会导致最后一个元素掉下来。
+        你可以利用元素浮动float，或者压缩html，清除元素间的空格来解决。
+        但最简单有效的方法还是设置父元素的font-size属性为0
+    </p>
+    <div class="items">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+</body>
+</html>
