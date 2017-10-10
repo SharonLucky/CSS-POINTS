@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义单选框+复选框样式</title>
+    <style>
+        input[type="checkbox"] + label::before {
+            content: '\a0'; /* 不换行空格 */
+            display: inline-block;
+            vertical-align: .2em;
+            width: .8em;
+            height: .8em;
+            margin-right: .2em;
+            border-radius: .2em;
+            background: silver;
+            text-indent: .15em;
+            line-height: .65;
+        }
+        input[type="checkbox"]:checked + label::before {
+            content: '\2713';
+            background: yellowgreen;
+        }
+        input[type="checkbox"] {
+            position: absolute;
+            clip: rect(0,0,0,0);
+        }
+        input[type="checkbox"]:focus + label::before {
+            box-shadow: 0 0 .1em .1em #58a;
+        }
+        input[type="checkbox"]:disabled + label::before {
+            background: gray;
+            box-shadow: none;
+            color: #555;
+        }
+
+        /*第二种：*/
+        .checkbox-beauty-container {
+            font-size: 0;
+            color: #76868f;
+            }
+            .checkbox-name {
+                vertical-align: middle;
+                font-size: 16px;
+            }
+            .checkbox-beauty {
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                text-align: center;
+                border: 1px solid green;
+                display: inline-block;
+                margin: 0 15px 0 3px;
+                vertical-align: middle;
+            }
+            input[type="checkbox"]:checked+.checkbox-beauty::after {
+                content: '✓';
+                font-size: 16px;
+                font-weight: bold;
+                color: green!important;
+            }
+
+        /*@media screen and (min-width:1200px) {
+            .checkbox-beauty {
+                &:hover {
+                    box-shadow: 0 0 7px green;
+                    &::after {
+                        content: '✓';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: green;
+                    }
+                }
+            }
+        }*/
+        .radio-beauty-container {
+            font-size: 0;
+        }
+        .radio-name {
+            vertical-align: middle;
+            font-size: 16px;
+        }
+        .radio-beauty {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+            display: inline-block;
+            border: 1px solid green;
+            vertical-align: middle;
+            margin: 0 15px 0 3px;
+            border-radius: 50%;
+            
+        }
+        .radio-beauty:hover {
+            box-shadow: 0 0 7px green;
+            padding: 2px;
+            background-color: green;
+            background-clip: content-box;
+        }
+        input[type="radio"]:checked+.radio-beauty {
+            padding: 2px;
+            background-color: green;
+            background-clip: content-box;
+        }
+
+    </style>
+</head>
+<body>
+<p>利用伪类去自定义复选框样式</p>
+<input type="checkbox" id="awesome" />
+<label for="awesome">Awesome!</label>
+
+<p>--------------------------------------</p>
+<div class="checkbox-beauty-container">
+   
+        <span class="checkbox-name">苹果</span>
+        <input type="checkbox" name="checkboxName" id="checkboxName1" hidden/>
+        <label for="checkboxName1" class="checkbox-beauty"></label>
+  
+   
+        <span class="checkbox-name">香蕉</span>
+        <input type="checkbox" name="checkboxName" id="checkboxName2" hidden />
+        <label for="checkboxName2" class="checkbox-beauty"></label>
+   
+  
+        <span class="checkbox-name">橘子</span>
+        <input type="checkbox" name="checkboxName" id="checkboxName3" hidden />
+        <label for="checkboxName3" class="checkbox-beauty"></label>
+   
+</div>
+
+<p>--------------------------------------</p>
+<div class="radio-beauty-container">
+    <label>
+        <span class="radio-name">前端工程师</span>
+        <input type="radio" name="radioName" id="radioName1" hidden/>
+        <label for="radioName1" class="radio-beauty"></label>
+    </label>
+    <label>
+        <span class="radio-name">后端工程师</span>
+        <input type="radio" name="radioName" id="radioName2" hidden/>
+        <label for="radioName2" class="radio-beauty"></label>
+    </label>
+    <label>
+        <span class="radio-name">全栈工程师</span>
+        <input type="radio" name="radioName" id="radioName3" hidden/>
+        <label for="radioName3" class="radio-beauty"></label>
+    </label>
+</div>
+</body>
+</html>

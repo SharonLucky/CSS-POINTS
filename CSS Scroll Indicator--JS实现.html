@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 5000px;
+    }
+
+    .scroll-indicator {
+        position: fixed;
+        height: 8px;
+        top: 0;
+        left: 0;
+        background: #369;
+    }
+    </style>
+</head>
+<body>
+    <!--
+        实现思路：
+        1. 页面加载完成之后，获取到页面文档高度（DH）、当前可视区域高度（VH）、可视区域距离页面顶部的高度scrollTop（TH）；
+        2. (DH - VH)就是需要滚动的值；
+        3. 监听页面 scroll 事件，(TH / (DH - VH)) * 100%，便是当前的占比；
+        4. 当然，需要考虑节流、 防抖。
+    -->
+  <div class="scroll-indicator j-scroll-indicator"></div>
+  <script>
+    (function() {
+        var dh = $(document).height();
+        var vh = $(window).height();
+        var sHeight = dh - vh;
+        $(window).scroll(function () {  
+            var perc = $(window).scrollTop() / (dh - vh);
+            $('.j-scroll-indicator').css({width: perc * 100 + '%'});
+    });  
+    }());
+  </script>
+</body>
+</html>

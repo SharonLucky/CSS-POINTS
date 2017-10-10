@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control" />
+    <meta content="no-cache" http-equiv="Pragma" />
+    <meta content="0" http-equiv="Expires" />
+    <title>Z助理</title>
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #163578;
+        }
+
+        .pages-wrapper {
+            width: 100%;
+            height: 100%;
+            /* position: relative; */
+        }
+
+        .flicker {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url(http://asset.marketbox.cn/Zzhuli/image/share-icon.gif) 0 0 no-repeat;
+            width: 50px;
+            height: 50px;
+            background-size: 100%;
+        }
+
+        .page {
+            font-size: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            transform: translate3d(0px, 100%, 0px);
+            -webkit-transform: translate3d(0px, 100%, 0px);
+            -moz-transform: translate3d(0px, 100%, 0px);
+            transition: transform .5s ease-out;
+            -webkit-transition: -webkit-transform .5s ease-out;
+            -moz-transition: -moz-transform .5s ease-out;
+            background-size: 100%;
+            background-position: center top;
+            background-repeat: no-repeat;
+        }
+
+        .load {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-bg.png');
+        }
+
+        .page1 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-1.jpg');
+        }
+
+        .page2 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-2.jpg');
+        }
+
+        .page3 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-3.jpg');
+        }
+
+        .page4 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-4.jpg');
+        }
+
+        .page5 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-5.jpg');
+        }
+
+        .page6 {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-6.jpg');
+        }
+        .page6-top {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-6-1.png');
+            background-size: 100%;
+            background-position: center top;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 50%;
+            margin-top: 4vw;
+            position: relative;
+        }
+        .page6-top img {
+            width: 60vw;
+            height: 60vw;
+            position: absolute;
+            left: 52%;
+            top: 54%;
+            transform: translate(-50%, -50%);
+        }
+        #qrcode {
+          opacity: 0;
+        }
+        .page6-bottom {
+            background-image: url('http://asset.marketbox.cn/Zzhuli/image/share-6-2.png');
+            background-size: 100%;
+            background-position: center top;
+            background-repeat: no-repeat;
+            width: 58%;
+            height: 46%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+        }
+
+        .loaing-icon {
+            display: block;
+            width: 320px;
+            height: 320px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            -webkit-transform: translate(-50%, -50%);
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-load.gif') center no-repeat;
+            background-size: 50%;
+        }
+
+        .page-gif {
+            display: block;
+            width: 42vw;
+            height: 46vh;
+            position: absolute;
+            bottom: 58px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .page2-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-2.gif') 0 0/100% 96% no-repeat;
+        }
+
+        .page3-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-3.gif') 0 0/100% 96% no-repeat;
+        }
+
+        .page4-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-4.gif') 0 0/100% 96% no-repeat;
+        }
+        .mobile {
+            position: relative;
+            width: 45%;
+            height: 51%;
+            margin: 0 auto;
+            bottom: -40%;
+            border-radius: 16%/8%;
+            border: 3px solid #ace5e8;
+            background-color: #163578;
+        }
+        .mobile-top {
+            border-radius: 3px;
+            border: 1px solid #231f20;
+            width: 20%;
+            height: 1%;
+            margin: 0 auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 6%;
+        }
+        .mobile-gif {
+            position: absolute;
+            width: 91%;
+            height: 85%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 10%;
+            border-radius: 4px;
+        }
+        .mobile-page2-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-2.gif') 0 0/100% 100% no-repeat;
+        }
+        .mobile-page3-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-4.gif') 0 0/100% 100% no-repeat;
+        }
+        .mobile-page4-gif {
+            background: url('http://asset.marketbox.cn/Zzhuli/image/share-3.gif') 0 0/100% 100% no-repeat;
+        }
+
+    </style>
+</head>
+
+<body id="body">
+    <div id="load" class="load">
+        <i class="loaing-icon"></i>
+    </div>
+    <div class="pages-wrapper">
+        <div class="page page1">
+            <div class="flicker"></div>
+        </div>
+        <div class="page page2">
+            <div class="mobile">
+                <i class="mobile-top"></i>
+                <i class="mobile-gif mobile-page2-gif"></i>
+            </div>
+            <div class="flicker"></div>
+        </div>
+        <div class="page page3">
+            <div class="mobile">
+                <i class="mobile-top"></i>
+                <i class="mobile-gif mobile-page3-gif"></i>
+            </div>
+            <div class="flicker"></div>
+        </div>
+        <div class="page page4">
+            <div class="mobile">
+                <i class="mobile-top"></i>
+                <i class="mobile-gif mobile-page4-gif"></i>
+            </div>
+            <div class="flicker"></div>
+        </div>
+        <div class="page page5">
+            <div class="flicker"></div>
+        </div>
+        <div class="page page6">
+            <div class="page6-top">
+              <img id="qrcode" src="">
+            </div>
+            <div class="page6-bottom"></div>
+        </div>
+    </div>
+    <script>
+        var showLoading = true
+        // PageSlide
+        var PageSlide = function (el, swipe, options) {
+            this.options = options || {}
+            this.current = 0
+            this.pageX
+            this.pageY
+            this.height
+            this.width
+            this.flag
+            this.move
+
+            this.$el = el
+            this.swipe = swipe || 'X'
+            this.resize().init().bindEvents()
+        }
+
+        PageSlide.prototype.init = function (i) {
+            var current = i ? this.$el.children[i] : this.$el.firstElementChild
+            if (!current) throw 'ERROR';
+
+            current.classList.add('moving')
+            current.style.webkitTransform = 'translate3d(0,0,0)'
+
+            for (var i = 1; i < this.$el.children.length; i++) {
+                this['set' + this.swipe](this.$el.children[i], (this.swipe === 'X' ? this.width : this.height))
+            }
+
+            setTimeout(function () {
+                current.classList.remove('moving')
+                current.classList.add('play')
+            }, 3e2)
+            return this
+        }
+
+        PageSlide.prototype.bindEvents = function () {
+            var self = this
+
+            window.addEventListener('resize orientationchange', this.resize.bind(this), false)
+
+            'touchstart touchmove touchend touchcancel'.split(' ').forEach(function (evn) {
+                self.$el.addEventListener(evn, self[evn].bind(self), false)
+            })
+        }
+
+        PageSlide.prototype.getCurrent = function () {
+            // console.log('getCurrent:>>', this.$el.children[this.current])
+            return this.$el.children[this.current]
+        }
+
+        PageSlide.prototype.resize = function () {
+            this.width = this.$el.parentNode.clientWidth
+            this.height = this.$el.parentNode.clientHeight
+            return this
+        }
+
+        PageSlide.prototype.random = function () {
+            var count = this.$el.children.length
+            var current = this.current
+            var arr = []
+            var num
+
+            for (var i = 0; i < count; i++) {
+                if (i !== current) arr.push(i.toString())
+            }
+
+            num = Math.floor(Math.random() * arr.length)
+            this.direct(+arr[num])
+        }
+
+        PageSlide.prototype.touchstart = function (e) {
+            var touches = e.touches[0]
+
+            //touch start initializing
+            this.flag = null
+            this.move = 0
+
+            //record coordinates
+            this.pageX = touches.pageX
+            this.pageY = touches.pageY
+        }
+
+        PageSlide.prototype.touchmove = function (e) {
+            var touches = e.touches[0]
+            var X = touches.pageX - this.pageX
+            var Y = touches.pageY - this.pageY
+
+            var current = this.getCurrent()
+            var next = current.nextElementSibling
+            var prev = current.previousElementSibling
+
+            //add moving styled
+
+            if (!this.flag) {
+                this.flag = Math.abs(X) > Math.abs(Y) ? 'X' : 'Y'
+
+                if (this.flag === this.swipe) {
+                    current.classList.add('moving')
+                    next && next.classList.add('moving')
+                    prev && prev.classList.add('moving')
+                }
+            }
+
+            if (this.flag === this.swipe) {
+                e.preventDefault()
+                e.stopPropagation()
+
+                switch (this.swipe) {
+                    case 'X':
+                        //swipe horizontal
+                        this.move = X
+
+                        this.setX(current, X)
+                        next && (this.setX(next, X + this.width))
+                        prev && (this.setX(prev, X - this.width))
+                        break;
+                    case 'Y':
+                        //swipe vertical
+                        this.move = Y
+
+                        this.setY(current, Y)
+
+                        next && (this.setY(next, Y + this.height))
+                        prev && (this.setY(prev, Y - this.height))
+                        break;
+                }
+            }
+        }
+
+        PageSlide.prototype.touchend = function (e) {
+            var minRange = 50
+            var move = this.move
+            var current = this.getCurrent()
+            var next = current.nextElementSibling
+            var prev = current.previousElementSibling
+
+            current.classList.remove('moving')
+            next && next.classList.remove('moving')
+            prev && prev.classList.remove('moving')
+            if (!this.flag) return
+
+            e.preventDefault()
+
+            if (move < -minRange && next) return this.next()
+            if (move > minRange && prev) return this.prev()
+            this.reset()
+        }
+
+        PageSlide.prototype.touchcancel = function (e) {
+            var current = this.getCurrent()
+            var next = current.nextElementSibling
+            var prev = current.previousElementSibling
+
+            current.classList.remove('moving')
+            next && next.classList.remove('moving')
+            prev && prev.classList.remove('moving')
+            this.reset()
+        }
+
+        PageSlide.prototype.setX = function (el, x, unit) {
+            el && (el.style.webkitTransform = 'translate3d(' + x + (unit || 'px') + ',0,0)')
+        }
+
+        PageSlide.prototype.setY = function (el, y, unit) {
+            el && (el.style.webkitTransform = 'translate3d(0,' + y + (unit || 'px') + ',0)')
+        }
+
+        PageSlide.prototype.setCurrent = function (el, i) {
+            el && (el.style.webkitTransform = 'translate3d(0,0,0)')
+
+            if (i) {
+                this.current = i
+                this.$current = this.$el.children[i]
+            }
+
+        }
+
+        PageSlide.prototype.next = function () {
+            console.log('next')
+            this.go(this.current + 1)
+        }
+
+        PageSlide.prototype.prev = function () {
+            this.go(this.current - 1)
+        }
+
+        PageSlide.prototype.reset = function () {
+            var width = this.width
+            var height = this.height
+            var swipe = this.swipe
+            var current = this.getCurrent()
+            var prev = current.previousElementSibling
+            var next = current.nextElementSibling
+
+            this.setCurrent(current)
+            prev && (this['set' + swipe](prev, -(swipe === 'X' ? width : height)))
+            next && (this['set' + swipe](next, swipe === 'X' ? width : height))
+        }
+
+        PageSlide.prototype.go = function (i) {
+            var onFinish = this.options.onFinish
+            var current = this.getCurrent()
+            var total = this.$el.childElementCount
+            var target = this.$el.children[i]
+            var d = i < this.current ? -1 : 1
+
+            if (i === this.current || i < 0 || i >= total) return
+            if (onFinish && (typeof onFinish === 'function')) onFinish.call(this, i)
+            // 滑动完成调用方法
+            typeof this.options.tranSetionEnd === 'function' && this.options.tranSetionEnd.call(this)
+            this.current = i
+
+            this['set' + this.swipe](current /*初始的current为0*/, -d * (this.swipe === 'X' ? this.width : this.height))
+            this.setCurrent(target, i)
+            this.finish(current, target)
+        }
+
+        PageSlide.prototype.finish = function (curr, target) {
+            this.flag = null
+            setTimeout(function () {
+                curr && curr.classList.remove('play')
+                target && target.classList.add('play')
+            }, 3e2)
+        }
+
+        /*direct to a page*/
+        PageSlide.prototype.direct = function (i) {
+            if (i && typeof (i) === 'number') {
+                this.go(i)
+                for (var j = 0; j < i; j++) {
+                    this['set' + this.swipe](this.$el.children[j], -1 * (this.swipe === 'X' ? this.width : this.height))
+                }
+            } else return
+
+        }
+        /* 传参 */
+        document.addEventListener('touchmove', function (e) {
+            e.preventDefault()
+        })
+        window.onload = function () {
+            var pages = new PageSlide(document.querySelector('.pages-wrapper'), 'Y', {
+                tranSetionEnd: function () {
+                    // console.log('current:>>>', this.current)
+                }
+            })
+            document.getElementById('load').style.display = 'none'
+          }
+        
+
+    </script>
+</body>
+
+</html>

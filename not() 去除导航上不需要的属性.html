@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>:not() 去除导航上不需要的属性</title>
+    <style>
+        li {
+            list-style: none;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        ul>li:not(:last-child)::after {
+            content: ",";
+        }
+
+        li:not(:nth-child(-n+3)) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+        <li>d</li>
+        <li>e</li>
+    </ul>
+    <p>除了最后一个，其他之间用逗号,进行分隔。</p>
+    <p>可以使用 .nav li + li(不包括第一个li) 或者 .nav li:first-child ~ li(不包括最后一个li)</p>
+</body>
+
+</html>

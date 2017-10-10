@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>感觉实际没有必要：？？使用 CSS来实现滚动指示器，难点在于：如何实时去获取当前可视区域在文档流中的位置。</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style>
+    .main {
+        margin: 0;
+        padding: 0;
+        display: block;
+        height: 30000px;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right top, #369 50%, #fff 50%);
+        background-size: 100% calc(100% - 99vh);
+    }
+
+    body:before {
+        content: '';
+        position: fixed;
+        top: 4px;
+        bottom: 0;
+        width: 100%;
+        z-index: -1;
+        background: #fff;
+    }
+    </style>
+</head>
+<body>
+    <!--
+        实现思路：
+        1。使用 CSS来实现滚动指示器，难点在于：如何实时去获取当前可视区域在文档流中的位置
+        也就是说：(TH / (DH - VH))公式中的 TH 可以不用知道，只需要 DH - VH 的高度，即直角三角形的高度便OK。
+        现在问题转化为：如何求出VH，这时候该 vh 这个长度单位登场了，vh 是基于视窗单位的排版计量。vh可以获取当前视窗的高度。嗯，现在看来，应该是可以一写了。
+    -->
+   <div class="main">
+        <h1>滚动鼠标</h1>
+    </div>
+</body>
+</html>
