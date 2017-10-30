@@ -5,13 +5,18 @@
     <meta charset="UTF-8">
     <title>CSS 斜线的实现</title>
     <style>
+        body {
+            background: #eee;
+        }
+        /*-----------------------------------法一、CSS3 旋转缩放-----------------------------------*/
+
         .method-one {
             position: relative;
             margin: 50px auto;
             width: 100px;
             height: 100px;
             box-sizing: border-box;
-            border: 1px solid #333; 
+            border: 1px solid #333;
             line-height: 120px;
             text-indent: 5px;
         }
@@ -25,7 +30,7 @@
             height: 50px;
             box-sizing: border-box;
             border-bottom: 1px solid deeppink;
-            transform-origin: bottom center; 
+            transform-origin: bottom center;
             /*transform:rotateZ(45deg) scale(1.414);*/
             animation: slash 5s infinite ease;
         }
@@ -44,8 +49,9 @@
                 transform: rotateZ(45deg) scale(1.414);
             }
         }
+        /*-----------------------------------法二、线性渐变实现-----------------------------------*/
 
-         .method-two {
+        .method-two {
             position: relative;
             margin: 50px auto;
             width: 100px;
@@ -56,6 +62,126 @@
             text-indent: 5px;
             background: linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
         }
+        /*-----------------------------------法三、伪元素+三角形-----------------------------------*/
+
+        .method-three {
+            position: relative;
+            margin: 50px auto;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #333;
+            background: #fff;
+            line-height: 120px;
+            text-indent: 5px;
+        }
+
+        .method-three::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border: 49px solid transparent;
+            border-left: 49px solid deeppink;
+            border-bottom: 49px solid deeppink;
+            animation: slash1 6s infinite ease;
+        }
+
+        .method-three::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border: 48px solid transparent;
+            border-left: 48px solid #fff;
+            border-bottom: 48px solid #fff;
+            animation: slash2 6s infinite ease;
+        }
+
+        @keyframes slash1 {
+            0% {
+                transform: translate(-50px);
+            }
+            30% {
+                transform: translate(0px);
+            }
+            100% {
+                transform: translate(0px);
+            }
+        }
+
+        @keyframes slash2 {
+            0% {
+                transform: translate(-100px);
+            }
+            30% {
+                transform: translate(-100px);
+            }
+            60% {
+                transform: translate(0px);
+            }
+            100% {
+                transform: translate(0px);
+            }
+        }
+        /*-----------------------------------法四、clip-path-----------------------------------*/
+
+        .method-four {
+            /*width: 100px;
+            height: 100px;
+            -webkit-clip-path: polygon(0 0, 0 100px, 100px 100px, 0 0);
+            background: deeppink;*/
+            position: relative;
+            margin: 50px auto;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            /*border:1px solid deeppink;  */
+            background-color: deeppink;
+            line-height: 120px;
+            text-indent: 5px;
+        }
+
+        .method-four::before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-clip-path: polygon(0 0, 0 100px, 100px 100px, 0 0);
+            background: #fff;
+            border: 1px solid #333;
+            transform: translateX(-120px);
+            animation: move 5s infinite linear;
+        }
+
+        .method-four::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            -webkit-clip-path: polygon(100px 99px, 100px 0, 1px 0, 100px 99px);
+            background: #fff;
+            border: 1px solid #333;
+            transform: translateX(120px);
+            animation: move 5s infinite linear;
+        }
+
+        @keyframes move {
+            40% {
+                transform: translateX(0px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
     </style>
 </head>
 
@@ -63,9 +189,16 @@
     <p>法一、CSS3 旋转缩放: 使用 伪元素 画出一条直线，然后绕 div 中心旋转 45deg ，再缩放一下就可以得到。</p>
     <div class="method-one"></div>
 
-    
+
     <p>法二、线性渐变实现 : 选定线性渐变的方向为 45deg，依次将渐变色值设为：transparent -> deeppink -> deeppink -> transparent。</p>
     <div class="method-two"></div>
+
+    <p>法三、伪元素+三角形</p>
+    <div class="method-three"></div>
+
+
+    <p>法四、clip-path</p>
+    <div class="method-four"></div>
 </body>
 
 </html>
