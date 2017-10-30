@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS 斜线的实现</title>
+    <style>
+        .method-one {
+            position: relative;
+            margin: 50px auto;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #333; 
+            line-height: 120px;
+            text-indent: 5px;
+        }
+
+        .method-one::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
+            border-bottom: 1px solid deeppink;
+            transform-origin: bottom center; 
+            /*transform:rotateZ(45deg) scale(1.414);*/
+            animation: slash 5s infinite ease;
+        }
+
+        @keyframes slash {
+            0% {
+                transform: rotateZ(0deg) scale(1);
+            }
+            30% {
+                transform: rotateZ(45deg) scale(1);
+            }
+            60% {
+                transform: rotateZ(45deg) scale(1.414);
+            }
+            100% {
+                transform: rotateZ(45deg) scale(1.414);
+            }
+        }
+
+         .method-two {
+            position: relative;
+            margin: 50px auto;
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+            border: 1px solid #333;
+            line-height: 120px;
+            text-indent: 5px;
+            background: linear-gradient(45deg, transparent 49.5%, deeppink 49.5%, deeppink 50.5%, transparent 50.5%);
+        }
+    </style>
+</head>
+
+<body>
+    <p>法一、CSS3 旋转缩放: 使用 伪元素 画出一条直线，然后绕 div 中心旋转 45deg ，再缩放一下就可以得到。</p>
+    <div class="method-one"></div>
+
+    
+    <p>法二、线性渐变实现 : 选定线性渐变的方向为 45deg，依次将渐变色值设为：transparent -> deeppink -> deeppink -> transparent。</p>
+    <div class="method-two"></div>
+</body>
+
+</html>
